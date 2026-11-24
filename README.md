@@ -286,7 +286,7 @@ Cybersecurity Professional, B084C
 
 Instructor: Waqas Karim CCIE
 
-LinkedIn: [https://www.linkedin.com/in/your-handle/](https://www.linkedin.com/in/kelechiuzoma/)
+LinkedIn: [https://www.linkedin.com/in/kelechiuzoma/](https://www.linkedin.com/in/kelechiuzoma/)
 
 **📌 Project Information**
 
