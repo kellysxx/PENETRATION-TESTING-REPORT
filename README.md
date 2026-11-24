@@ -225,8 +225,11 @@ folder of this repository:
 **👤 Author**
 
 **[Kelechi Happiness Uzoma]**
+
 Cybersecurity Professional, [B084C]
+
 Instructor [Waqas Karim CCIE]
+
 LinkedIn: [https://www.linkedin.com/in/your-handle/](https://www.linkedin.com/in/your-handle/)
 
 **📌 Project Information**
