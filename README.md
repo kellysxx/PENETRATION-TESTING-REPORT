@@ -201,7 +201,7 @@ environment.
 
 # 8. Evidences Collected
 
-All evidence referenced in Section 4 is stored in the [`evidence/`](evidence/)
+All evidence referenced in Section 4 is stored in the [`evidence/`]
 folder of this repository:
 
 | File | Description |
