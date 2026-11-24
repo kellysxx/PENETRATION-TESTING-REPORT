@@ -66,7 +66,7 @@ I inspected the target's HTTP response headers using `curl -i`, which
 identified the server stack (**LiteSpeed**) and CMS in use (**Mediroza CMS
 1.4.2**, via a `generator` meta tag).
 
-![Recon - HTTP headers](evidence/01-recon-headers.png)
+![Recon - HTTP headers](01-recon-headers.png)
 
 ## 4.2 WAF Fingerprinting
 
@@ -75,7 +75,7 @@ site. The result identified a **LiteSpeed WAF**, which informed how the
 rest of the assessment was approached (automated scanning was expected to
 be rate-limited or blocked).
 
-![wafw00f result](evidence/02-wafw00f.png)
+![wafw00f result](02-wafw00f.png)
 
 ## 4.3 Content Discovery
 
@@ -84,28 +84,28 @@ directories: `/patient/`, `/staff/`, and `/old/`. The `/old/` entry stood
 out as a legacy-sounding path with no reason to still be referenced in a
 production robots.txt file.
 
-![robots.txt disclosure](evidence/03-robots-txt.png)
+![robots.txt disclosure](03-robots-txt.png)
 
 Manually browsing to `/old/` revealed an **unprotected SQL database
 backup file** (`mediroza_db_backup_2019.sql`), containing a full `staff`
 table (names, job titles, emails, national ID numbers, salaries) and a
 `shareholders` table (names, share percentages, shares held).
 
-![Exposed backup - staff table](evidence/04-exposed-backup-staff-table.png)
-![Exposed backup - shareholders table](evidence/05-exposed-backup-shareholders-table.png)
+![Exposed backup - staff table](04-exposed-backup-staff-table.png)
+![Exposed backup - shareholders table](05-exposed-backup-shareholders-table.png)
 
 ## 4.4 Authentication & Injection Testing
 
 I tested the patient portal login form (`/patient/login.php`) manually
 and with automated tooling.
 
-![Login form (baseline)](evidence/06-patient-portal-login.png)
+![Login form (baseline)](06-patient-portal-login.png)
 
 Manual payload testing (e.g. `admin'--` in the username field) did not
 bypass authentication — the form consistently responded with "Username
 not found."
 
-![Manual SQLi payload test](evidence/07-sqli-manual-test.png)
+![Manual SQLi payload test](07-sqli-manual-test.png)
 
 I then ran `sqlmap` in form-detection mode:
 ```
@@ -114,22 +114,22 @@ sqlmap -u "https://medirozahospital.com/patient/login.php" --forms --batch
 The WAF returned HTTP 403 responses during form detection, and sqlmap
 could not identify any injectable parameters.
 
-![sqlmap scan result](evidence/08-sqlmap-scan.png)
+![sqlmap scan result](08-sqlmap-scan.png)
 
 ## 4.5 Traffic Analysis
 
 I intercepted the patient portal's authentication requests using Burp
 Suite to review session handling, cookie attributes, and header hygiene.
 
-![Burp Suite - browser view](evidence/09-burp-browser-login.png)
-![Burp Suite - intercepted request](evidence/10-burp-intercept-request.png)
+![Burp Suite - browser view](09-burp-browser-login.png)
+![Burp Suite - intercepted request](10-burp-intercept-request.png)
 
 ## 4.6 Credential & Document Security Review
 
 The patient portal exposed downloadable, password-protected PDF lab
 reports.
 
-![Patient portal - report list](evidence/11-patient-portal-reports-list.png)
+![Patient portal - report list](11-patient-portal-reports-list.png)
 
 One sample report was tested for password strength using an offline
 dictionary attack:
@@ -141,13 +141,13 @@ The password was recovered in under a second against the `rockyou.txt`
 wordlist, indicating a common dictionary word rather than a randomly
 generated, per-document secret.
 
-![pdf2john + John the Ripper crack](evidence/12-pdf2john-john-crack.png)
+![pdf2john + John the Ripper crack](12-pdf2john-john-crack.png)
 
 Decrypted sample reports (synthetic test data):
 
-![Sample report 1](evidence/13-sample-report-1.png)
-![Sample report 2](evidence/14-sample-report-2.png)
-![Sample report 3](evidence/15-sample-report-3.png)
+![Sample report 1](13-sample-report-1.png)
+![Sample report 2](14-sample-report-2.png)
+![Sample report 3](15-sample-report-3.png)
 
 ## 4.7 Password Cracking — Networkwalks Training Tool (Alternate Method)
 
@@ -250,7 +250,7 @@ environment.
 
 # 8. Evidences Collected
 
-All evidence referenced in Section 4 is stored in the [`evidence/`](evidence/)
+All evidence referenced in Section 4 is stored in the [`evidence/`]
 folder of this repository:
 
 | File | Description |
@@ -286,7 +286,7 @@ Cybersecurity Professional, B084C
 
 Instructor: Waqas Karim CCIE
 
-LinkedIn: [https://www.linkedin.com/in/your-handle/](https://www.linkedin.com/in/your-handle/)
+LinkedIn: [https://www.linkedin.com/in/your-handle/](https://www.linkedin.com/in/kelechiuzoma/)
 
 **📌 Project Information**
 
